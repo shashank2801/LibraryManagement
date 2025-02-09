@@ -1,5 +1,13 @@
 package com.shashank.LMS.model;
 
-public class Genre {
-
+public enum Genre {
+	FICTIONAL,
+    NON_FICTIONAL,
+    GEOGRAPHY,
+    HISTORY,
+    POLITICAL_SCIENCE,
+    BOTANY,
+    CHEMISTRY,
+    MATHEMATICS,
+    PHYSICS
 }
