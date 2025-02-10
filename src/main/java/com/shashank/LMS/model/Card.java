@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.ValidationMode;
 
 @Entity
@@ -23,7 +24,7 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany(mappedBy = "card",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "card",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private Student student;
 	
 	@CreationTimestamp

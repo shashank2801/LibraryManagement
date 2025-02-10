@@ -1,5 +1,6 @@
 package com.shashank.LMS.model;
 
-public class CardStatus {
-
+public enum CardStatus {
+	ACTIVATED,
+	DEACTIVATED
 }
