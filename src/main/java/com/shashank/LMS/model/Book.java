@@ -25,10 +25,20 @@ public class Book {
 	
 	private String name;
 	
-	@Enumerated(EnumType.STRING)
-	private Genre genre;
+	private String genre;
+	
+	private int AuthId;
 	
 	
+	public int getAuthId() {
+		return AuthId;
+	}
+
+
+	public void setAuthId(int authId) {
+		AuthId = authId;
+	}
+
 	@ManyToOne
 	@JoinColumn
 	@JsonIgnore
@@ -51,16 +61,22 @@ public class Book {
 	public Book() {
 
 	}
-
-	public Book(int id, String name, Genre genre, Author author, Card card, boolean available,
-			List<Transaction> transactions) {
-		this.id = id;
+	
+	
+	public Book(String name, String genre, Author author) {
 		this.name = name;
 		this.genre = genre;
 		this.author = author;
-		this.card = card;
-		this.available = available;
-		this.transactions = transactions;
+		this.AuthId = author.getId();
+		this.available = true;
+		
+	}
+	
+	public Book(String name, String genre, int authId) {
+		this.name = name;
+		this.genre = genre;
+		this.available = true;
+		this.AuthId = authId;
 	}
 
 	public int getId() {
@@ -79,11 +95,11 @@ public class Book {
 		this.name = name;
 	}
 
-	public Genre getGenre() {
+	public String getGenre() {
 		return genre;
 	}
 
-	public void setGenre(Genre genre) {
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
