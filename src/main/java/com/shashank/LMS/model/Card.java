@@ -33,8 +33,7 @@ public class Card {
 	@UpdateTimestamp
 	private Date updatedOn;
 	
-	@Enumerated(value=EnumType.STRING)
-	private CardStatus cardStatus;
+	private String cardStatus;
 	
 	@OneToMany(mappedBy="card",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Transaction> transactions;
@@ -45,20 +44,16 @@ public class Card {
 	
 	
 	public Card() {
-		
+		this.cardStatus = "ACTIVATED";
 	}
 	
 	
 
-	public Card(int id, Student student, Date createdOn, Date updatedOn, CardStatus cardStatus,
-			List<Transaction> transactions, List<Book> books) {
-		this.id = id;
+	public Card(Student student, Date createdOn, Date updatedOn, String cardStatus) {
 		this.student = student;
 		this.createdOn = createdOn;
 		this.updatedOn = updatedOn;
 		this.cardStatus = cardStatus;
-		this.transactions = transactions;
-		this.books = books;
 	}
 
 
@@ -95,11 +90,11 @@ public class Card {
 		this.updatedOn = updatedOn;
 	}
 
-	public CardStatus getCardStatus() {
+	public String getCardStatus() {
 		return cardStatus;
 	}
 
-	public void setCardStatus(CardStatus cardStatus) {
+	public void setCardStatus(String cardStatus) {
 		this.cardStatus = cardStatus;
 	}
 
