@@ -36,9 +36,8 @@ public class Transaction {
 	
 	@Column(columnDefinition = "TINYINT(1)")
 	private Boolean isIssueOperation;
-	
-	@Enumerated(EnumType.STRING)
-	private TransactionStatus transactionStatus;
+	)
+	private String transactionStatus;
 	
 	@CreationTimestamp
 	private Date transactionDate;
@@ -48,12 +47,9 @@ public class Transaction {
 	public Transaction() {
 	}
 
-	public Transaction(int id, String transactionId, Card card, int fineAmount, Book book, Boolean isIssueOperation,
-			TransactionStatus transactionStatus, Date transactionDate) {
-		this.id = id;
-		this.transactionId = transactionId;
+	public Transaction(Card card,Book book, Boolean isIssueOperation,
+			String transactionStatus, Date transactionDate) {
 		this.card = card;
-		this.fineAmount = fineAmount;
 		this.book = book;
 		this.isIssueOperation = isIssueOperation;
 		this.transactionStatus = transactionStatus;
@@ -108,12 +104,12 @@ public class Transaction {
 		this.isIssueOperation = isIssueOperation;
 	}
 
-	public TransactionStatus getTransactionStatus() {
+	public String getTransactionStatus() {
 		return transactionStatus;
 	}
 
-	public void setTransactionStatus(TransactionStatus transactionStatus) {
-		this.transactionStatus = transactionStatus;
+	public void setTransactionStatus(String string) {
+		this.transactionStatus = string;
 	}
 
 	public Date getTransactionDate() {
