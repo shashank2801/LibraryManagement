@@ -43,16 +43,11 @@ public class Student {
 		
 	}
 
-	public Student(int id, String email, String name, int age, String country, Card card, Date createdOn,
-			Date updatedOn) {
-		this.id = id;
+	public Student(String email, String name, int age, String country) {
 		this.email = email;
 		this.name = name;
 		this.age = age;
 		this.country = country;
-		this.card = card;
-		this.createdOn = createdOn;
-		this.updatedOn = updatedOn;
 	}
 
 	public int getId() {
