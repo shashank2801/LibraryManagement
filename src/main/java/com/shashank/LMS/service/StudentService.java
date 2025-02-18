@@ -47,10 +47,14 @@ public class StudentService {
 		
 	}
 	
-	public void deleteStudent(int id) {
-		Student find = studentRepository.findById(id).get();
-		if(find!=null) {
+	public ResponseEntity<String> deleteStudent(int id) {
+		try {			
+			Student find = studentRepository.findById(id).get();
 			studentRepository.delete(find);
+			return new ResponseEntity<String>("Student deleted",HttpStatus.OK);
+		}
+		catch(Exception e) {
+			return new ResponseEntity<String>("No student found with this id",HttpStatus.NOT_FOUND);
 		}
 	}
 }

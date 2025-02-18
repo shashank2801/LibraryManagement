@@ -41,7 +41,7 @@ public class StudentController {
 	
 	@DeleteMapping("/deleteStudent")
 	public ResponseEntity<String> deleteStudent(@RequestParam int studentId) {
-		studentService.deleteStudent(studentId);
-		return new ResponseEntity<String>("Student deleted",HttpStatus.ACCEPTED);
+		ResponseEntity<String> res = studentService.deleteStudent(studentId);
+		return res;
 	}
 }
