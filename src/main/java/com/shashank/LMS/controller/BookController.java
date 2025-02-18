@@ -23,8 +23,9 @@ public class BookController {
 	
 	@PostMapping("/addBook")
 	public ResponseEntity<String> addBook(@RequestBody Book book){
-		bookService.addBook(book);
-		return new ResponseEntity<String>("Book Added!",HttpStatus.CREATED);
+		ResponseEntity<String> status = bookService.addBook(book);
+		return status;
+//		return new ResponseEntity<String>("Book Added!",HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getBooks")
