@@ -36,7 +36,7 @@ public class Transaction {
 	
 	@Column(columnDefinition = "TINYINT(1)")
 	private Boolean isIssueOperation;
-	)
+	
 	private String transactionStatus;
 	
 	@CreationTimestamp

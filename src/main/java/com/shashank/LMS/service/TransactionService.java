@@ -1,6 +1,8 @@
 package com.shashank.LMS.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,8 +71,35 @@ public class TransactionService {
 	}
 	
 	public String returnBook(int cardId,int bookId) {
-		transactionRepository.save(null);
-		return "";
+		List<Transaction> transactions = transactionRepository.findByCardAndBook(cardId,bookId,"successful",true);
+		Transaction lastTransaction = transactions.get(transactions.size()-1);
+		Date issueDate = lastTransaction.getTransactionDate();
+		Long issueTime = Math.abs(issueDate.getTime()-System.currentTimeMillis());
+		Long days_passed = TimeUnit.DAYS.convert(issueTime,TimeUnit.MILLISECONDS);
+		int fine = 0;
+		if(days_passed>max_days_allowed) {
+			fine = (int)Math.abs(days_passed-max_days_allowed)*fine_per_day;
+		}
+		
+		Card card = lastTransaction.getCard();
+		Book book = lastTransaction.getBook();
+		
+		//reset
+		book.setCard(null);
+		book.setAvailable(true);
+		//save
+		bookRepository.save(book);
+		
+		//transaction
+		Transaction transaction = new Transaction();
+		transaction.setBook(book);
+		transaction.setCard(card);
+		transaction.setFineAmount(fine);
+		transaction.setIsIssueOperation(false);
+		transaction.setTransactionStatus("successful");
+		transactionRepository.save(transaction);
+		
+		return transaction.getTransactionId();
 	}
 	
 }

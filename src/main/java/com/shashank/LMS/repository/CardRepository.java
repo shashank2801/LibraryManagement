@@ -8,6 +8,6 @@ import com.shashank.LMS.model.Card;
 
 public interface CardRepository extends JpaRepository<Card, Integer>{
 	
-	@Query(value="update card c set c.card_status = 'DEACTIVATED' where c.id in (select card_id from Student s where s.id = :student_id)")
+	@Query(value="update Card c set c.cardStatus = 'DEACTIVATED' where c.id in (select sub.id from (select card from Student s where s.id = :student_id ) as sub)",nativeQuery = true)
 	public void deactivateCard(@Param("student_id") int studentId);
 }

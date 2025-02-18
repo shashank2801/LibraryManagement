@@ -34,7 +34,7 @@ public class BookService {
 			return bookRepository.findByGenre(genre);
 		else if(author!=null)
 			return bookRepository.findByAuthor(author);
-		return bookRepository.findByAvailable(isAvailable);
+		else return bookRepository.findByAvailable(isAvailable);
 	}
 	
 	//transactional
