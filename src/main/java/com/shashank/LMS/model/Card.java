@@ -49,10 +49,8 @@ public class Card {
 	
 	
 
-	public Card(Student student, Date createdOn, Date updatedOn, String cardStatus) {
+	public Card(Student student, String cardStatus) {
 		this.student = student;
-		this.createdOn = createdOn;
-		this.updatedOn = updatedOn;
 		this.cardStatus = cardStatus;
 	}
 
