@@ -28,8 +28,6 @@ public class AuthorController {
 	@Autowired
 	private AuthorService authorService;
 	
-	
-
 	@PostMapping("/createAuthor")
 	public ResponseEntity<String> createAuthor(@RequestBody Author author) {
 		authorService.createAuthor(author);
