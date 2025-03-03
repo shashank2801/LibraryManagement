@@ -12,27 +12,11 @@ import com.shashank.LMS.security.User;
 import com.shashank.LMS.security.UserRepository;
 
 @SpringBootApplication
-public class LmsApplication implements CommandLineRunner{
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+public class LmsApplication{
 
 	public static void main(String[] args){
 		SpringApplication.run(LmsApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		User user = new User();
-		user.setUsername("admin");
-		user.setPassword(passwordEncoder.encode("admin"));
-		user.setRoles(Arrays.asList("ADMIN"));
-		userRepository.save(user);	
-		
-		
-	}
 
 }

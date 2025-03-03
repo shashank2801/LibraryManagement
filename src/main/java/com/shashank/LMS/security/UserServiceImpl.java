@@ -36,19 +36,29 @@ public class UserServiceImpl implements UserDetailsService {
 		}
 	}
 	
-	public void saveUser(User user) {
+	public List<User> findAll(){
+		return userRepository.findAll();
+	}
+
+	
+	public void saveUserAsStudent(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRoles(Arrays.asList("STUDENT"));
 		userRepository.save(user);			
 	}
 	
-	public List<User> findAll(){
-		return userRepository.findAll();
-	}
-
+	
 	public void saveUserAsAdmin(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRoles(Arrays.asList("ADMIN"));
+		userRepository.save(user);	
+		
+	}
+
+	public void saveUserAsLibrarian(User user) {
+		// TODO Auto-generated method stub
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRoles(Arrays.asList("LIBRARIAN"));
 		userRepository.save(user);	
 		
 	}

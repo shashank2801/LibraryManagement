@@ -25,15 +25,15 @@ public class SecurityConfig{
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		return http.authorizeHttpRequests(request -> request
-				.requestMatchers("/public/**").permitAll()
-				.requestMatchers("/author/**").hasRole("ADMIN")
-				.requestMatchers("/book/createBook").hasRole("ADMIN")
-				.requestMatchers("/book/**").hasAnyRole("STUDENT","ADMIN")
+				.requestMatchers("/admin/**").hasRole("ADMIN")
+				.requestMatchers("/author/**").hasAnyRole("ADMIN","LIBRARIAN")
+				.requestMatchers("/book/createBook").hasAnyRole("ADMIN","LIBRARIAN")
+				.requestMatchers("/book/**").hasAnyRole("STUDENT","ADMIN","LIBRARIAN")
 				
-				.requestMatchers(HttpMethod.PUT,"/student/**").hasAnyRole("STUDENT","ADMIN")
-                .requestMatchers(HttpMethod.POST,"/student/**").hasRole("STUDENT")
-                .requestMatchers(HttpMethod.GET,"/student/").hasRole("STUDENT")
-                .requestMatchers("/student/**").hasRole("ADMIN")
+//				.requestMatchers(HttpMethod.PUT,"/student/**").hasAnyRole("LIBRARIAN","ADMIN")
+//                .requestMatchers(HttpMethod.POST,"/student/**").hasAnyRole("LIBRARIAN","ADMIN")
+//                .requestMatchers(HttpMethod.GET,"/student/**").hasAnyRole("LIBRARIAN","ADMIN")
+                .requestMatchers("/student/**").hasAnyRole("ADMIN","LIBRARIAN")
 
 
                 .requestMatchers(HttpMethod.POST,"/transaction/**").hasRole("STUDENT")
