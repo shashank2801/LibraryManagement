@@ -24,8 +24,7 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(mappedBy = "card",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private Student student;
+	private int studentId;
 	
 	@CreationTimestamp
 	private Date createdOn;
@@ -35,11 +34,9 @@ public class Card {
 	
 	private String cardStatus;
 	
-	@OneToMany(mappedBy="card",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Transaction> transactions;
+	private List<Integer> transactions;
 	
-	@OneToMany(mappedBy="card",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Book> books;
+	private List<Integer> books;
 	
 	
 	
@@ -49,8 +46,8 @@ public class Card {
 	
 	
 
-	public Card(Student student, String cardStatus) {
-		this.student = student;
+	public Card(int studentId, String cardStatus) {
+		this.studentId = studentId;
 		this.cardStatus = cardStatus;
 	}
 
@@ -64,13 +61,16 @@ public class Card {
 		this.id = id;
 	}
 
-	public Student getStudent() {
-		return student;
+
+	public int getStudentId() {
+		return studentId;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
+
 
 	public Date getCreatedOn() {
 		return createdOn;
@@ -96,20 +96,12 @@ public class Card {
 		this.cardStatus = cardStatus;
 	}
 
-	public List<Transaction> getTransactions() {
+	public List<Integer> getTransactions() {
 		return transactions;
 	}
 
-	public void setTransactions(List<Transaction> transactions) {
+	public void setTransactions(List<Integer> transactions) {
 		this.transactions = transactions;
-	}
-
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
 	}
 	
 	

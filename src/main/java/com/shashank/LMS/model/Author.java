@@ -26,8 +26,7 @@ public class Author {
 	
 	private String country;
 	
-	@OneToMany(mappedBy = "author",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Book> books_written;
+	private List<Integer> books_written;
 	
 	public Author() {
 		
@@ -70,10 +69,10 @@ public class Author {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public List<Book> getBooks_written() {
+	public List<Integer> getBooks_written() {
 		return books_written;
 	}
-	public void setBooks_written(List<Book> books_written) {
+	public void setBooks_written(List<Integer> books_written) {
 		this.books_written = books_written;
 	}
 	

@@ -29,6 +29,10 @@ public class SecurityConfig{
 				.requestMatchers("/author/**").hasAnyRole("ADMIN","LIBRARIAN")
 				.requestMatchers("/book/createBook").hasAnyRole("ADMIN","LIBRARIAN")
 				.requestMatchers("/book/**").hasAnyRole("STUDENT","ADMIN","LIBRARIAN")
+				.requestMatchers("/card/**").hasAnyRole("ADMIN","LIBRARIAN")
+				.requestMatchers("/student/**").hasAnyRole("ADMIN","LIBRARIAN")
+				.requestMatchers("/transaction/**").hasAnyRole("ADMIN","LIBRARIAN")
+				
 				
 //				.requestMatchers(HttpMethod.PUT,"/student/**").hasAnyRole("LIBRARIAN","ADMIN")
 //                .requestMatchers(HttpMethod.POST,"/student/**").hasAnyRole("LIBRARIAN","ADMIN")
@@ -36,9 +40,9 @@ public class SecurityConfig{
                 .requestMatchers("/student/**").hasAnyRole("ADMIN","LIBRARIAN")
 
 
-                .requestMatchers(HttpMethod.POST,"/transaction/**").hasRole("STUDENT")
-                .requestMatchers(HttpMethod.GET,"/transaction/").hasRole("STUDENT")
-                .requestMatchers(HttpMethod.GET,"/transaction/all").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/transaction/**").hasAnyRole("STUDENT","ADMIN","LIBRARIAN")
+                .requestMatchers(HttpMethod.GET,"/transaction/byCard/**").hasAnyRole("STUDENT","LIBRARIAN")
+                .requestMatchers(HttpMethod.GET,"/transaction/all").hasAnyRole("ADMIN","LIBRARIAN")
 
 				.anyRequest().authenticated())
 			.httpBasic(Customizer.withDefaults())

@@ -24,10 +24,9 @@ public class CardService {
 		Card card = new Card();
 		try {
 			Student student = studentRepository.findById(id).get();
-			student.setCard(card);
-			card.setStudent(student);
+			card.setStudentId(student.getId());
 			cardRepository.save(card);
-			return new ResponseEntity<String>("Card mapped with student",HttpStatus.CREATED);
+			return new ResponseEntity<String>("Card mapped with student id:"+student.getId(),HttpStatus.CREATED);
 		}
 		catch(Exception e) {
 			return new ResponseEntity<String>("Student not found with given id.",HttpStatus.NOT_FOUND);

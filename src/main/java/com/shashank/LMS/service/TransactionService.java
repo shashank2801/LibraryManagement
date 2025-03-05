@@ -6,6 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shashank.LMS.model.Book;
@@ -34,6 +37,28 @@ public class TransactionService {
 	@Value("${books.fine.per_day}")
 	int fine_per_day;
 	
+	
+	public ResponseEntity<?> getById(int id) {
+		Card card = cardRepository.findById(id).get();
+		if(card==null)
+			return new ResponseEntity<>("No card found by this id",HttpStatus.NOT_FOUND);
+		else {
+			List<Transaction> list = transactionRepository.findByCard(card);
+			if(list!=null || list.size()!=0)
+				return new ResponseEntity<>(list,HttpStatus.OK);
+			else
+				return new ResponseEntity<>("No transactions from this card",HttpStatus.OK);
+		}
+	}
+	
+	public ResponseEntity<?> getAll() {
+		List<Transaction> list = transactionRepository.findAll();
+		if(list!=null && list.size()!=0) {
+			return new ResponseEntity<>(list,HttpStatus.OK);
+		}
+		else
+			return new ResponseEntity<>("No transactions found",HttpStatus.NO_CONTENT);
+	} 
 	
 	public String issueBook(int cardId, int bookId) throws Exception {
 		Book book = bookRepository.findById(bookId).get();

@@ -27,10 +27,6 @@ public class Student {
 	
 	private String country;
 	
-	@OneToOne
-	@JoinColumn
-	private Card card;
-	
 	@CreationTimestamp
 	private Date createdOn;
 	
@@ -90,13 +86,13 @@ public class Student {
 		this.country = country;
 	}
 
-	public Card getCard() {
-		return card;
-	}
-
-	public void setCard(Card card) {
-		this.card = card;
-	}
+//	public Card getCard() {
+//		return card;
+//	}
+//
+//	public void setCard(Card card) {
+//		this.card = card;
+//	}
 
 	public Date getCreatedOn() {
 		return createdOn;

@@ -24,15 +24,11 @@ public class Transaction {
 	
 	private String transactionId = UUID.randomUUID().toString();
 	
-	@ManyToOne
-	@JoinColumn
-	private Card card;
+	private int cardId;
 	
 	private int fineAmount;
 	
-	@ManyToOne
-	@JoinColumn
-	private Book book;
+	private int bookId;
 	
 	@Column(columnDefinition = "TINYINT(1)")
 	private Boolean isIssueOperation;
@@ -47,10 +43,10 @@ public class Transaction {
 	public Transaction() {
 	}
 
-	public Transaction(Card card,Book book, Boolean isIssueOperation,
+	public Transaction(int cardId,int bookId, Boolean isIssueOperation,
 			String transactionStatus, Date transactionDate) {
-		this.card = card;
-		this.book = book;
+		this.cardId = cardId;
+		this.bookId = bookId;
 		this.isIssueOperation = isIssueOperation;
 		this.transactionStatus = transactionStatus;
 		this.transactionDate = transactionDate;
@@ -72,13 +68,13 @@ public class Transaction {
 		this.transactionId = transactionId;
 	}
 
-	public Card getCard() {
-		return card;
-	}
-
-	public void setCard(Card card) {
-		this.card = card;
-	}
+//	public Card getCard() {
+//		return card;
+//	}
+//
+//	public void setCard(Card card) {
+//		this.card = card;
+//	}
 
 	public int getFineAmount() {
 		return fineAmount;
@@ -88,13 +84,13 @@ public class Transaction {
 		this.fineAmount = fineAmount;
 	}
 
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
+//	public Book getBook() {
+//		return book;
+//	}
+//
+//	public void setBook(Book book) {
+//		this.book = book;
+//	}
 
 	public Boolean getIsIssueOperation() {
 		return isIssueOperation;
@@ -118,6 +114,22 @@ public class Transaction {
 
 	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
+	}
+
+	public int getCardId() {
+		return cardId;
+	}
+
+	public void setCardId(int cardId) {
+		this.cardId = cardId;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 	
 	

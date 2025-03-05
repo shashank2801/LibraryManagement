@@ -26,58 +26,29 @@ public class Book {
 	private String name;
 	
 	private String genre;
-	
-	private int AuthId;
-	
-	
-	public int getAuthId() {
-		return AuthId;
-	}
 
-
-	public void setAuthId(int authId) {
-		AuthId = authId;
-	}
-
-	@ManyToOne
-	@JoinColumn
-	@JsonIgnore
-	Author author;
+	private int authorId;
 	
-	@ManyToOne
-	@JoinColumn
-	@JsonIgnore
-	Card card;
+    private int cardId;
 	
 	@Column(columnDefinition = "TINYINT(1)")
 	private boolean available;
 	
-	@OneToMany(mappedBy = "book",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonIgnore
-	private List<Transaction> transactions;
+	private List<Integer> transactions;
 	
-	
-
 	public Book() {
 
 	}
 	
 	
-	public Book(String name, String genre, Author author) {
+	public Book(String name, String genre, int authorId) {
 		this.name = name;
 		this.genre = genre;
-		this.author = author;
-		this.AuthId = author.getId();
+		this.authorId = authorId;
 		this.available = true;
 		
 	}
 	
-	public Book(String name, String genre, int authId) {
-		this.name = name;
-		this.genre = genre;
-		this.available = true;
-		this.AuthId = authId;
-	}
 
 	public int getId() {
 		return id;
@@ -103,21 +74,21 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public Author getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
-
-	public Card getCard() {
-		return card;
-	}
-
-	public void setCard(Card card) {
-		this.card = card;
-	}
+//	public Author getAuthor() {
+//		return author;
+//	}
+//
+//	public void setAuthor(Author author) {
+//		this.author = author;
+//	}
+//
+//	public Card getCard() {
+//		return card;
+//	}
+//
+//	public void setCard(Card card) {
+//		this.card = card;
+//	}
 
 	public boolean isAvailable() {
 		return available;
@@ -127,12 +98,31 @@ public class Book {
 		this.available = available;
 	}
 
-	public List<Transaction> getTransactions() {
+	public List<Integer> getTransactions() {
 		return transactions;
 	}
 
-	public void setTransactions(List<Transaction> transactions) {
+	public void setTransactions(List<Integer> transactions) {
 		this.transactions = transactions;
+	}
+
+
+	public int getAuthorId() {
+		return authorId;
+	}
+
+
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+
+	public int getCardId() {
+		return cardId;
+	}
+
+
+	public void setCardId(int cardId) {
+		this.cardId = cardId;
 	}
 	
 	

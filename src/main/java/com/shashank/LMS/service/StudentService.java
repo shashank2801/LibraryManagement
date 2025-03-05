@@ -34,7 +34,6 @@ public class StudentService {
 			Student old = studentRepository.findById(id).get();
 			
 			old.setAge(student.getAge());
-			old.setCard(student.getCard());
 			old.setCountry(student.getCountry());
 			old.setEmail(student.getEmail());
 			old.setName(student.getName());
