@@ -103,6 +103,18 @@ public class Card {
 	public void setTransactions(List<Integer> transactions) {
 		this.transactions = transactions;
 	}
+
+
+
+	public List<Integer> getBooks() {
+		return books;
+	}
+
+
+
+	public void setBooks(List<Integer> books) {
+		this.books = books;
+	}
 	
 	
 }

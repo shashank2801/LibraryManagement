@@ -13,13 +13,13 @@ import com.shashank.LMS.model.Book;
 public interface BookRepository extends JpaRepository<Book, Integer>{
 	public List<Book> findByGenre(String genre);
 	
-	@Query("select b from Book b where b.genre = :genre and b.author in (select a from Author a where a.name = :author)")
+	@Query("select b from Book b where b.genre = :genre and b.authorId in (select id from Author a where a.name = :author)")
 	public List<Book> findByGenreAndAuthor(@Param("genre") String genre,@Param("author") String author);
 	
 	@Query("select b from Book b where b.available = :isAvailable")
 	public List<Book> findByAvailable(@Param("isAvailable") boolean isAvailable);
 	
-	@Query("select b from Book b where b.author in (select a from Author a where a.name = :author)")
+	@Query("select b from Book b where b.authorId in (select id from Author a where a.name = :author)")
 	public List<Book> findByAuthor(@Param("author") String author);
 	
 }

@@ -75,11 +75,11 @@ public class TransactionService {
 		//updating book status
 		book.setAvailable(false);
 		//mapping book to card
-		book.setCard(card);
+		book.setCardId(cardId);
 		//list of books mapped in card
-		List<Book> books = card.getBooks();
+		List<Integer> books = card.getBooks();
 		//adding books to card
-		books.add(book);
+		books.add(book.getId());
 		//updating card
 		card.setBooks(books);
 		bookRepository.save(book);
@@ -87,8 +87,8 @@ public class TransactionService {
 		
 		//new Transaction
 		Transaction transaction = new Transaction();
-		transaction.setCard(card);
-		transaction.setBook(book);
+		transaction.setCardId(cardId);
+		transaction.setBookId(bookId);
 		transaction.setIsIssueOperation(true);
 		transaction.setTransactionStatus("successful");
 		transactionRepository.save(transaction);
@@ -106,19 +106,18 @@ public class TransactionService {
 			fine = (int)Math.abs(days_passed-max_days_allowed)*fine_per_day;
 		}
 		
-		Card card = lastTransaction.getCard();
-		Book book = lastTransaction.getBook();
+		Book book = bookRepository.findById(bookId).get();
 		
 		//reset
-		book.setCard(null);
+		book.setCardId(-1);
 		book.setAvailable(true);
 		//save
 		bookRepository.save(book);
 		
 		//transaction
 		Transaction transaction = new Transaction();
-		transaction.setBook(book);
-		transaction.setCard(card);
+		transaction.setBookId(bookId);
+		transaction.setCardId(cardId);
 		transaction.setFineAmount(fine);
 		transaction.setIsIssueOperation(false);
 		transaction.setTransactionStatus("successful");
